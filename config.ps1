@@ -50,7 +50,8 @@ foreach ($d in ($env:Path -split ';')) {
     if (-not -not $d) {
         if (Test-Path -PathType Container $d) {
             Get-ChildItem "$d\*" -Include @("vcruntime*.dll", "msvc*.dll") |
-                ForEach-Object { Write-Output "    $($_.FullName)" }
+                ForEach-Object { (Get-Command $_).FileVersionInfo } |
+                ForEach-Object { Write-Output "    $($_.FileName) => $($_.FileVersion)" }
         }
         else {
             Write-Output "    ==> non existent"
