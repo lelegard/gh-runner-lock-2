@@ -6,8 +6,21 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_windows:
+  build_default:
     runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Setup
+      run: ./setup.ps1
+    - name: Build
+      run: ./build.ps1 -NoPause
+    - name: Test
+      run: bin/test.exe
+
+  build_workaround:
+    runs-on: windows-latest
+    env:
+      DISABLE_CONSTEXPR_MUTEX_CONSTRUCTOR: true
     steps:
     - uses: actions/checkout@master
     - name: Setup

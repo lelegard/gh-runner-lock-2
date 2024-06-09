@@ -94,4 +94,13 @@
             Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
   </ImportGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+
+
+  <ItemDefinitionGroup Condition="'$(DISABLE_CONSTEXPR_MUTEX_CONSTRUCTOR)' != ''">
+    <ClCompile>
+      <PreprocessorDefinitions>_DISABLE_CONSTEXPR_MUTEX_CONSTRUCTOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+
+
 </Project>
