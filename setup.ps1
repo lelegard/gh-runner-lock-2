@@ -23,6 +23,6 @@ if (-not $VCRedist64) {
 else {
     Write-Output "Installing $VCRedist64"
     $start = Get-Date
-    & $VCRedist64 /q /norestart
+    Start-Process -Wait -FilePath $VCRedist64 -ArgumentList @("/q", "/norestart")
     Display-Duration $start
 }
