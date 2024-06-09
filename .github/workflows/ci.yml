@@ -6,6 +6,13 @@ on:
   workflow_dispatch:
 
 jobs:
+  show_config:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Config
+      run: ./config.ps1
+
   build_default:
     runs-on: windows-latest
     steps:
