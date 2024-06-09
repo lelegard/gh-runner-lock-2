@@ -22,7 +22,9 @@ jobs:
     - name: Build
       run: ./build.ps1 -NoPause
     - name: Test
-      run: bin/test.exe
+      run: |
+        $env:Path = "C:\Windows\system32;$($env:Path)"
+        bin/test.exe
 
   build_workaround:
     runs-on: windows-latest
@@ -35,4 +37,6 @@ jobs:
     - name: Build
       run: ./build.ps1 -NoPause
     - name: Test
-      run: bin/test.exe
+      run: |
+        $env:Path = "C:\Windows\system32;$($env:Path)"
+        bin/test.exe
