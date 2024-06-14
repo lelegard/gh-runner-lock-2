@@ -5,6 +5,17 @@ function Display-Duration($start)
 }
 
 Write-Output ""
+Write-Output "==== Cleanup hostedtoolcache\windows"
+Write-Output ""
+
+$start = Get-Date
+
+Get-ChildItem -Path "C:\hostedtoolcache\windows" -File -Include msvcp*.dll,concrt*.dll,vccorlib*.dll,vcruntime*.dll -Recurse |
+    Remove-Item -Force -Verbose
+
+Display-Duration $start
+
+Write-Output ""
 Write-Output "==== Search all Visual Studio"
 Write-Output ""
 
